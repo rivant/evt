@@ -65,3 +65,5 @@ end
 gem "pg", "~> 1.6"
 
 gem "devise", "~> 4.9"
+
+gem "rspec-rails", "~> 8.0", :group => :"development test"

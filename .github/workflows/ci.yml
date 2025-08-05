@@ -62,8 +62,8 @@ jobs:
     	  ports:
     	    - 5432:5432
     	  env:
-    	    DB_USER: postgres
-    	    DB_PW: password
+    	    DB_USER: ${{ secrets.DB_USER }}
+    	    DB_PW: ${{ secrets.DB_PW }}
     	    POSTGRES_DB: evt_test
     	  options: >-
     	    --health-cmd pg_isready

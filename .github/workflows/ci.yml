@@ -52,24 +52,23 @@ jobs:
 
       - name: Lint code for consistent style
         run: bin/rubocop -f github
-
   test:
     runs-on: ubuntu-latest
 
-		services:
-    	postgres:
-    	  image: postgres:14
-    	  ports:
-    	    - 5432:5432
-    	  env:
-    	    DB_USER: ${{ secrets.DB_USER }}
-    	    DB_PW: ${{ secrets.DB_PW }}
-    	    POSTGRES_DB: evt_test
-    	  options: >-
-    	    --health-cmd pg_isready
-    	    --health-interval 10s
-    	    --health-timeout 5s
-    	    --health-retries 5
+    services:
+      postgres:
+        image: postgres:14
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_USER: ${{ secrets.DB_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.DB_PW }}
+          POSTGRES_DB: evt_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
       - name: Install packages
@@ -84,15 +83,15 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
-			- name: Setup DB and Run Tests
-      	env:
-      	  RAILS_ENV: test
-      	  DB_USER: ${{ secrets.DB_USER }}
-      	  DB_PW: ${{ secrets.DB_PW }}
-      	  DB_HOST: localhost
-      	run: |
-      	  bin/rails db:create db:schema:load
-      	  bin/rails test test:system
+      - name: Setup DB and Run Tests
+        env:
+          RAILS_ENV: test
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_PW: ${{ secrets.DB_PW }}
+          DB_HOST: localhost
+        run: |
+          bin/rails db:create db:schema:load
+          bin/rails test test:system
 
       - name: Keep screenshots from failed system tests
         uses: actions/upload-artifact@v4
@@ -101,3 +100,4 @@ jobs:
           name: screenshots
           path: ${{ github.workspace }}/tmp/screenshots
           if-no-files-found: ignore
+

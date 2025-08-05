@@ -86,6 +86,7 @@ GEM
     brakeman (7.1.0)
       racc
     builder (3.3.0)
+    byebug (12.0.0)
     capybara (3.40.0)
       addressable
       matrix
@@ -116,6 +117,11 @@ GEM
     erubi (1.13.1)
     et-orbi (1.2.11)
       tzinfo
+    factory_bot (6.5.4)
+      activesupport (>= 6.1.0)
+    factory_bot_rails (6.5.0)
+      factory_bot (~> 6.5)
+      railties (>= 6.1.0)
     fugit (1.11.1)
       et-orbi (~> 1, >= 1.2.11)
       raabro (~> 1.4)
@@ -383,9 +389,11 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   brakeman
+  byebug (~> 12.0)
   capybara
   debug
   devise (~> 4.9)
+  factory_bot_rails
   importmap-rails
   jbuilder
   kamal

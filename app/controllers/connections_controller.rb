@@ -21,7 +21,7 @@ class ConnectionsController < ApplicationController
 
   # POST /connections or /connections.json
   def create
-    @connection = Connection.new(connection_params)
+    @connection = current_user.connections.new(connection_params)
 
     respond_to do |format|
       if @connection.save
@@ -65,6 +65,6 @@ class ConnectionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def connection_params
-      params.expect(connection: [ :user_id, :relation, :first_name, :last_name, :middle_name, :email, :phone ])
+      params.expect(connection: [ :relation, :first_name, :last_name, :middle_name, :email, :phone ])
     end
 end

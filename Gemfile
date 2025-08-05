@@ -65,3 +65,5 @@ end
 gem "pg", "~> 1.6"
 
 gem "devise", "~> 4.9"
+
+gem "rspec", "~> 3.13"

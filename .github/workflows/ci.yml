@@ -86,9 +86,9 @@ jobs:
       - name: Setup DB and Run Tests
         env:
           RAILS_ENV: test
-          DB_USER: ${{ secrets.DB_USER }}
-          DB_PW: ${{ secrets.DB_PW }}
-          DB_HOST: localhost
+          POSTGRES_USER: ${{ secrets.DB_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.DB_PW }}
+          POSTGRES_DB: evt_test
         run: |
           bin/rails db:create db:schema:load
           bin/rails test test:system

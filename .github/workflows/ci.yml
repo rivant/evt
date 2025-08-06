@@ -88,7 +88,7 @@ jobs:
           RAILS_ENV: test
           POSTGRES_USER: ${{ secrets.DB_USER }}
           POSTGRES_PASSWORD: ${{ secrets.DB_PW }}
-          POSTGRES_DB: localhost
+          POSTGRES_DB: evt_test
         run: |
           bin/rails db:create db:schema:load
           bin/rails test test:system
